@@ -12,7 +12,7 @@
       font-family: Georgia, serif;
       color: white;
       text-align: center;
-      background: linear-gradient(180deg, #050014, #16104a, #050014);
+      background: linear-gradient(180deg, #030014, #0b0f3d, #050014);
       overflow-x: hidden;
     }
 
@@ -23,31 +23,40 @@
     h1 {
       font-size: 3.5rem;
       color: #9ad7ff;
-      text-shadow: 0 0 15px #7ec8ff, 0 0 30px #ff8ae2;
+      text-shadow: 0 0 15px #7ec8ff, 0 0 35px #8f5cff;
+      margin-bottom: 10px;
     }
 
     p {
-      max-width: 700px;
-      margin: 15px auto;
+      max-width: 750px;
+      margin: 15px auto 30px;
       font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .battle-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(126, 200, 255, 0.5);
+      border-radius: 24px;
+      padding: 18px;
+      max-width: 1000px;
+      margin: 20px auto;
+      box-shadow: 0 0 30px rgba(126, 200, 255, 0.5);
     }
 
     img {
-      width: 85%;
-      max-width: 850px;
-      border-radius: 20px;
-      border: 4px solid #9ad7ff;
-      box-shadow: 0 0 30px #7ec8ff;
+      width: 100%;
+      border-radius: 18px;
+      display: block;
       animation: glowPulse 3s infinite alternate;
     }
 
-    /* Extra aesthetic effect for the battle image */
     @keyframes glowPulse {
       from {
         box-shadow: 0 0 20px #7ec8ff;
       }
       to {
-        box-shadow: 0 0 45px #ff8ae2;
+        box-shadow: 0 0 45px #8f5cff;
       }
     }
 
@@ -56,11 +65,11 @@
       margin-top: 25px;
       padding: 15px 30px;
       border-radius: 30px;
-      background: linear-gradient(135deg, #7ec8ff, #ff8ae2);
+      background: linear-gradient(135deg, #7ec8ff, #8f5cff);
       color: white;
       text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 15px #ff8ae2;
+      box-shadow: 0 0 15px #7ec8ff;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
@@ -68,32 +77,21 @@
       transform: scale(1.08);
       box-shadow: 0 0 25px white;
     }
-
-    .battle-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      border-radius: 20px;
-      padding: 20px;
-      max-width: 950px;
-      margin: 20px auto;
-    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Boss Battle Challenge</h1>
+    <h1>Night Boss Battle</h1>
 
     <p>
-      The hero can only strike the monster after answering the English question
-      correctly. This combines RPG action with educational gameplay.
+      The hero charges into battle under the moonlight, using a glowing sword to face
+      a powerful shadow monster.
     </p>
 
     <div class="battle-card">
-      <img src="battle-question.png" alt="RPG boss battle with English question" />
+      <img src="epic_battle_beneath_the_stormy_moon.png" alt="Blonde sword hero fighting a black monster at night" />
     </div>
-
-    <br />
 
     <a href="index.html">Return to Home</a>
   </div>
