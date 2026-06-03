@@ -44,12 +44,16 @@
       box-shadow: 0 0 30px rgba(126, 200, 255, 0.5);
     }
 
-    img {
+    img {   
       width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      object-position: center;
       border-radius: 18px;
       display: block;
       animation: glowPulse 3s infinite alternate;
     }
+
 
     @keyframes glowPulse {
       from {
@@ -62,7 +66,7 @@
 
     .quiz-section {
       max-width: 850px;
-      margin: 40px auto;
+      margin: 20px auto;
       background: rgba(5, 5, 25, 0.85);
       border: 2px solid #9ad7ff;
       border-radius: 24px;
