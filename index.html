@@ -3,134 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quest Arena | Landing Page</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <title>Quest Arena</title>
 
+  <style>
     body {
+      margin: 0;
       min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Georgia, serif;
       color: white;
-      background: radial-gradient(circle at top, #243d7a 0%, #0b1026 45%, #050712 100%);
+      text-align: center;
+      background: radial-gradient(circle at top, #243b7a, #090018 70%);
       overflow-x: hidden;
     }
 
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
+    /* IMPROVEMENT 1: animated glowing background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#9ad7ff 1px, transparent 1px);
+      background-size: 80px 80px, 130px 130px;
+      animation: starsMove 25s linear infinite;
+      opacity: 0.35;
+      z-index: -1;
     }
 
-    .bg-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.65;
+    @keyframes starsMove {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(120px);
+      }
     }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(5, 7, 18, 0.7), rgba(24, 44, 104, 0.45));
-      z-index: 1;
-    }
-
-    .content-card {
-      position: relative;
-      z-index: 2;
-      max-width: 850px;
-      padding: 44px;
-      border: 2px solid rgba(154, 205, 255, 0.5);
-      border-radius: 28px;
-      background: rgba(6, 10, 31, 0.72);
-      box-shadow: 0 0 40px rgba(73, 137, 255, 0.45), inset 0 0 30px rgba(111, 83, 255, 0.15);
-      backdrop-filter: blur(8px);
-    }
-
-    .eyebrow {
-      color: #92c8ff;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      margin-bottom: 16px;
+    .container {
+      padding: 50px 20px;
     }
 
     h1 {
-      font-size: clamp(2.8rem, 7vw, 5.7rem);
-      line-height: 0.95;
-      margin-bottom: 22px;
-      text-shadow: 0 0 25px rgba(104, 170, 255, 0.9);
+      font-size: 4rem;
+      color: #ffd6ff;
+      text-shadow: 0 0 15px #ff7df2, 0 0 30px #7ec8ff;
+      margin-bottom: 10px;
     }
 
     p {
-      max-width: 680px;
-      margin: 0 auto 30px;
-      color: #e2ecff;
       font-size: 1.2rem;
-      line-height: 1.7;
+      max-width: 700px;
+      margin: 10px auto 25px;
     }
 
-    .button {
+    video {
+      width: 80%;
+      max-width: 800px;
+      border: 4px solid #ffd6ff;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #ff7df2;
+      margin: 20px 0;
+    }
+
+    button, a {
       display: inline-block;
-      padding: 16px 30px;
-      border-radius: 999px;
-      color: #081126;
-      background: linear-gradient(135deg, #8ed2ff, #f2e6ff);
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff8ae2, #7ec8ff);
+      color: white;
       text-decoration: none;
+      cursor: pointer;
       font-weight: bold;
-      font-size: 1.05rem;
-      box-shadow: 0 0 28px rgba(119, 189, 255, 0.8);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 0 15px #ff8ae2;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .button:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 0 38px rgba(171, 219, 255, 1);
+    button:hover, a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px #ffffff;
     }
 
-    .video-note {
-      margin-top: 24px;
-      font-size: 0.95rem;
-      color: #bac8ed;
+    /* IMPROVEMENT 2: quiz pop-up */
+    .quiz-box {
+      display: none;
+      background: rgba(10, 5, 30, 0.95);
+      border: 3px solid #7ec8ff;
+      box-shadow: 0 0 25px #7ec8ff;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 500px;
+      margin: 30px auto;
     }
 
-    @media (max-width: 650px) {
-      .content-card {
-        padding: 30px 22px;
-      }
+    .answer {
+      display: block;
+      margin: 12px auto;
+      width: 80%;
+      padding: 12px;
+      border-radius: 15px;
+      background-color: #25104a;
+      color: white;
+      border: 2px solid #ff8ae2;
+      cursor: pointer;
+    }
+
+    .answer:hover {
+      background-color: #ff8ae2;
+    }
+
+    #feedback {
+      font-weight: bold;
+      margin-top: 15px;
+      color: #ffd6ff;
     }
   </style>
 </head>
+
 <body>
-  <main class="hero">
-    <!-- Upload your AI-generated video to Replit and name it exactly video.mp4 -->
-    <video class="bg-video" autoplay muted loop playsinline controls>
+  <div class="container">
+    <h1>Quest Arena</h1>
+
+    <p>
+      Enter a fantasy RPG world where heroes must use both power and knowledge
+      to defeat magical monsters.
+    </p>
+
+    <video autoplay loop muted controls>
       <source src="video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
-    <div class="overlay"></div>
+    <br />
 
-    <section class="content-card">
-      <div class="eyebrow">AI Fantasy Learning Game</div>
-      <h1>Quest Arena</h1>
-      <p>
-        Battle giant monsters in a magical RPG world where every attack depends on answering an English or math question correctly.
-      </p>
-      <a class="button" href="content.html">Enter the Boss Battle</a>
-      <div class="video-note">The background video loops automatically when the page opens.</div>
-    </section>
-  </main>
+    <button onclick="showQuiz()">Unlock Boss Battle</button>
+
+    <div class="quiz-box" id="quizBox">
+      <h2>Answer to Enter the Battle!</h2>
+      <p>Which sentence is grammatically correct?</p>
+
+      <button class="answer" onclick="wrongAnswer()">A. She go to school.</button>
+      <button class="answer" onclick="correctAnswer()">B. She goes to school.</button>
+      <button class="answer" onclick="wrongAnswer()">C. She going to school.</button>
+
+      <p id="feedback"></p>
+    </div>
+  </div>
+
+  <script>
+    function showQuiz() {
+      document.getElementById("quizBox").style.display = "block";
+    }
+
+    function correctAnswer() {
+      document.getElementById("feedback").innerHTML =
+        "Correct! The battle portal is opening...";
+      
+      setTimeout(function() {
+        window.location.href = "content.html";
+      }, 1200);
+    }
+
+    function wrongAnswer() {
+      document.getElementById("feedback").innerHTML =
+        "Try again! You must answer correctly to attack the boss.";
+    }
+  </script>
+</body>
+</html>
 </body>
 </html>
