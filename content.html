@@ -60,6 +60,74 @@
       }
     }
 
+    .quiz-section {
+      max-width: 850px;
+      margin: 40px auto;
+      background: rgba(5, 5, 25, 0.85);
+      border: 2px solid #9ad7ff;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 0 30px rgba(143, 92, 255, 0.6);
+    }
+
+    .quiz-section h2 {
+      color: #ffd6ff;
+      text-shadow: 0 0 15px #ff8ae2;
+      font-size: 2rem;
+    }
+
+    .question-box {
+      margin: 25px 0;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+    }
+
+    .question-box h3 {
+      color: #9ad7ff;
+      margin-bottom: 15px;
+    }
+
+    .answer {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 14px;
+      border: 2px solid #8f5cff;
+      background: #12072f;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .answer:hover {
+      background: #2b1464;
+      transform: scale(1.02);
+    }
+
+    .correct {
+      background: #1f7a4d !important;
+      border-color: #7dffb2 !important;
+    }
+
+    .wrong {
+      background: #7a1f3d !important;
+      border-color: #ff7da8 !important;
+    }
+
+    #score {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffd6ff;
+      margin-top: 20px;
+      text-shadow: 0 0 10px #ff8ae2;
+    }
+
     a {
       display: inline-block;
       margin-top: 25px;
@@ -93,7 +161,76 @@
       <img src="epic_battle_beneath_the_stormy_moon.png" alt="Blonde sword hero fighting a black monster at night" />
     </div>
 
+    <div class="quiz-section">
+      <h2>Answer Questions to Damage the Boss</h2>
+      <p>Each correct answer powers up the hero’s attack!</p>
+
+      <div class="question-box">
+        <h3>1. Which sentence is grammatically correct?</h3>
+        <button class="answer" onclick="checkAnswer(this, false)">A. She go to the castle.</button>
+        <button class="answer" onclick="checkAnswer(this, true)">B. She goes to the castle.</button>
+        <button class="answer" onclick="checkAnswer(this, false)">C. She going to the castle.</button>
+      </div>
+
+      <div class="question-box">
+        <h3>2. What is 9 × 7?</h3>
+        <button class="answer" onclick="checkAnswer(this, false)">A. 56</button>
+        <button class="answer" onclick="checkAnswer(this, true)">B. 63</button>
+        <button class="answer" onclick="checkAnswer(this, false)">C. 72</button>
+      </div>
+
+      <div class="question-box">
+        <h3>3. Which word is a noun?</h3>
+        <button class="answer" onclick="checkAnswer(this, false)">A. Quickly</button>
+        <button class="answer" onclick="checkAnswer(this, true)">B. Dragon</button>
+        <button class="answer" onclick="checkAnswer(this, false)">C. Shiny</button>
+      </div>
+
+      <div class="question-box">
+        <h3>4. What is 15 + 28?</h3>
+        <button class="answer" onclick="checkAnswer(this, false)">A. 42</button>
+        <button class="answer" onclick="checkAnswer(this, true)">B. 43</button>
+        <button class="answer" onclick="checkAnswer(this, false)">C. 45</button>
+      </div>
+
+      <div class="question-box">
+        <h3>5. Which sentence uses personification?</h3>
+        <button class="answer" onclick="checkAnswer(this, true)">A. The moon smiled down at the battlefield.</button>
+        <button class="answer" onclick="checkAnswer(this, false)">B. The sword was very sharp.</button>
+        <button class="answer" onclick="checkAnswer(this, false)">C. The monster was larger than a house.</button>
+      </div>
+
+      <p id="score">Boss Damage: 0 / 5</p>
+    </div>
+
     <a href="index.html">Return to Home</a>
   </div>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(button, isCorrect) {
+      const questionBox = button.parentElement;
+      const buttons = questionBox.querySelectorAll(".answer");
+
+      // Stops the user from answering the same question multiple times
+      buttons.forEach(btn => {
+        btn.disabled = true;
+      });
+
+      if (isCorrect) {
+        button.classList.add("correct");
+        score++;
+      } else {
+        button.classList.add("wrong");
+      }
+
+      document.getElementById("score").innerHTML = "Boss Damage: " + score + " / 5";
+
+      if (score === 5) {
+        document.getElementById("score").innerHTML = "Boss Defeated! Perfect Score: 5 / 5";
+      }
+    }
+  </script>
 </body>
 </html>
